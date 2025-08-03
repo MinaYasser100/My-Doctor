@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_doctor/core/routing/animation_route.dart';
 import 'package:my_doctor/core/routing/routes.dart';
 import 'package:my_doctor/features/home/ui/home_view.dart';
+import 'package:my_doctor/features/search/ui/search_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
@@ -11,14 +12,14 @@ abstract class AppRouter {
         path: Routes.home,
         pageBuilder: (context, state) => fadeTransitionPage(HomeScreen()),
       ),
-      // GoRoute(
-      //   path: Routes.productDetails,
-      //   pageBuilder: (context, state) {
-      //     final product = state.extra as Product?;
-      //     if (product == null) throw Exception('Product not found');
-      //     return fadeTransitionPage(ProductDetailsView(product: product));
-      //   },
-      // ),
+      GoRoute(
+        path: Routes.homeSearch,
+        pageBuilder: (context, state) {
+          final query = state.extra as String?;
+          if (query == null) throw Exception('Product not found');
+          return fadeTransitionPage(SearchView(query: query));
+        },
+      ),
     ],
   );
 }

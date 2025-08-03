@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:my_doctor/core/routing/routes.dart';
 import 'package:my_doctor/core/utils/colors.dart';
+import 'package:my_doctor/features/search/manager/cubit/home_search_cubit.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  const SearchBarWidget({super.key});
+  final String initialQuery;
+
+  const SearchBarWidget({super.key, required this.initialQuery});
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController(
+      text: initialQuery,
+    );
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
@@ -23,8 +28,9 @@ class SearchBarWidget extends StatelessWidget {
         ],
       ),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
-          hintText: 'Search for a medicine...',
+          hintText: 'Search favorites...',
           hintStyle: TextStyle(color: ColorsTheme().grayColor),
           prefixIcon: Icon(Icons.search, color: ColorsTheme().whiteColor),
           border: InputBorder.none,
@@ -35,7 +41,7 @@ class SearchBarWidget extends StatelessWidget {
         ),
         style: TextStyle(color: ColorsTheme().whiteColor),
         onSubmitted: (query) {
-          context.push(Routes.homeSearch, extra: query);
+          context.read<HomeSearchCubit>().searchFavorites(query);
         },
       ),
     );

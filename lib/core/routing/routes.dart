@@ -12,4 +12,6 @@ class Routes {
 
   // Static route constants
   static const String home = '/';
+
+  static const String homeSearch = '/home_search';
 }
