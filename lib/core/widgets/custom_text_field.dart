@@ -47,10 +47,7 @@ class CustomTextFormField extends StatelessWidget {
       obscuringCharacter: obscuringCharacter ?? '.',
       decoration: InputDecoration(
         suffixIcon: suffixIcon != null
-            ? IconButton(
-                onPressed: suffixPressed,
-                icon: suffixIcon!,
-              )
+            ? IconButton(onPressed: suffixPressed, icon: suffixIcon!)
             : null,
         hintText: hintText,
         hintStyle: AppTextStyles.styleMedium16sp(context),
@@ -64,9 +61,7 @@ class CustomTextFormField extends StatelessWidget {
   OutlineInputBorder buildOutlineInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(
-        color: Color(0xFFDCDCDC),
-      ),
+      borderSide: const BorderSide(color: Color(0xFFDCDCDC)),
     );
   }
 }
