@@ -7,6 +7,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
+  final List<DrugModel> _allMedicines = [];
 
   HomeCubit(this._homeRepo) : super(HomeInitial());
 
@@ -14,9 +15,25 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoading());
     try {
       final medicines = await _homeRepo.fetchPopularMedicines();
-      emit(HomeLoaded(medicines: medicines));
+      _allMedicines.addAll(medicines);
+      emit(HomeLoaded(medicines: medicines, isFiltered: false));
     } catch (e) {
       emit(HomeError(message: e.toString()));
     }
   }
+
+  void filterMedicines(String query) {
+    try {
+      final filteredMedicines = _allMedicines.where((medicien) {
+        final title = medicien.title?.toLowerCase() ?? '';
+        return title.contains(query.toLowerCase());
+      }).toList();
+      emit(HomeLoaded(medicines: filteredMedicines, isFiltered: true));
+    } catch (e) {
+      emit(HomeError(message: 'Failed to filter medicines'));
+    }
+  }
+
+  void resetFilter() =>
+      emit(HomeLoaded(medicines: _allMedicines, isFiltered: false));
 }

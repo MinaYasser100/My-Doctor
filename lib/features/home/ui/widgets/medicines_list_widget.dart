@@ -35,9 +35,34 @@ class MedicinesListWidget extends StatelessWidget {
               } else if (state is HomeLoaded) {
                 if (state.medicines.isEmpty) {
                   return Center(
-                    child: Text(
-                      'No medicines found',
-                      style: TextStyle(color: ColorsTheme().grayColor),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          state.isFiltered
+                              ? 'No medicines found for this category'
+                              : 'No medicines found',
+                          style: TextStyle(color: ColorsTheme().whiteColor),
+                        ),
+                        SizedBox(height: 10.h),
+                        if (state.isFiltered)
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all(
+                                Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              context.read<HomeCubit>().resetFilter();
+                            },
+                            child: Text(
+                              'Show All Medicines',
+                              style: TextStyle(
+                                color: ColorsTheme().accentColor,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   );
                 }

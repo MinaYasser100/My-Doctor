@@ -11,8 +11,14 @@ class AppConst {
   // Static constants
   static const String baseUrl =
       'https://dailymed.nlm.nih.gov/dailymed/services/v2/';
+  // لجلب قائمة الأدوية (غالباً بيستخدم لعرض الأدوية الشعبية).
   static const String spls = 'spls';
-  static const String spl = 'spl'; // Will be used with setid
+  // لجلب تفاصيل دواء معين بناءً على setId
+  static const String spl = 'spl';
+  // للبحث عن أدوية بناءً على كلمة مفتاحية (query).
   static const String search = 'search.json';
+  // (مش واضح استخدامه بدقة من الكود، لكنه ممكن يكون لجلب تفاصيل إضافية عن الدواء).
   static const String label = 'label.json';
+  // What's new ?
+  static const String newData = '/spls/recent';
 }
