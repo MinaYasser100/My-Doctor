@@ -15,11 +15,11 @@ class HomeBodyView extends StatelessWidget {
     return CustomBodyBackground(
       child: CustomScrollView(
         slivers: [
+          const SearchBarWidget(),
           SliverPadding(
             padding: EdgeInsets.all(16.w),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                const SearchBarWidget(),
                 SizedBox(height: 24.h),
                 Text(
                   'Popular Categories',
