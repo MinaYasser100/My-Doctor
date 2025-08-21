@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_doctor/core/utils/colors.dart';
+import 'package:my_doctor/core/utils/custom_body_background.dart';
 
 import 'search_bar_widget.dart';
 import 'search_results_widget.dart';
@@ -12,14 +13,7 @@ class SearchBodyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [ColorsTheme().primaryColor, ColorsTheme().backgroundColor],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
+    return CustomBodyBackground(
       child: CustomScrollView(
         slivers: [
           SliverPadding(

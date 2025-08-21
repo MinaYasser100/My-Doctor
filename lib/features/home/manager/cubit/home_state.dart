@@ -14,8 +14,12 @@ class HomeLoading extends HomeState {}
 class HomeLoaded extends HomeState {
   final List<DrugModel> medicines;
   final bool isFiltered;
-
-  const HomeLoaded({required this.medicines, required this.isFiltered});
+  final String? selectedCategoryQuery;
+  const HomeLoaded({
+    required this.medicines,
+    required this.isFiltered,
+    this.selectedCategoryQuery,
+  });
 
   @override
   List<Object> get props => [medicines];

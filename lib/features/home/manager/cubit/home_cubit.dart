@@ -16,7 +16,13 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final medicines = await _homeRepo.fetchPopularMedicines();
       _allMedicines.addAll(medicines);
-      emit(HomeLoaded(medicines: medicines, isFiltered: false));
+      emit(
+        HomeLoaded(
+          medicines: medicines,
+          isFiltered: false,
+          selectedCategoryQuery: null,
+        ),
+      );
     } catch (e) {
       emit(HomeError(message: e.toString()));
     }
@@ -28,12 +34,23 @@ class HomeCubit extends Cubit<HomeState> {
         final title = medicien.title?.toLowerCase() ?? '';
         return title.contains(query.toLowerCase());
       }).toList();
-      emit(HomeLoaded(medicines: filteredMedicines, isFiltered: true));
+      emit(
+        HomeLoaded(
+          medicines: filteredMedicines,
+          isFiltered: true,
+          selectedCategoryQuery: query,
+        ),
+      );
     } catch (e) {
       emit(HomeError(message: 'Failed to filter medicines'));
     }
   }
 
-  void resetFilter() =>
-      emit(HomeLoaded(medicines: _allMedicines, isFiltered: false));
+  void resetFilter() => emit(
+    HomeLoaded(
+      medicines: _allMedicines,
+      isFiltered: false,
+      selectedCategoryQuery: null,
+    ),
+  );
 }

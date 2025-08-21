@@ -4,8 +4,20 @@ import 'package:go_router/go_router.dart';
 import 'package:my_doctor/core/routing/routes.dart';
 import 'package:my_doctor/core/utils/colors.dart';
 
-class SearchBarWidget extends StatelessWidget {
+class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
+
+  @override
+  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+}
+
+class _SearchBarWidgetState extends State<SearchBarWidget> {
+  final controller = TextEditingController();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +46,7 @@ class SearchBarWidget extends StatelessWidget {
               ],
             ),
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 hintText: 'Search for a medicine...',
                 hintStyle: TextStyle(color: ColorsTheme().grayColor),
@@ -47,6 +60,7 @@ class SearchBarWidget extends StatelessWidget {
               style: TextStyle(color: ColorsTheme().whiteColor),
               onSubmitted: (query) {
                 context.push(Routes.homeSearch, extra: query);
+                controller.clear();
               },
             ),
           ),

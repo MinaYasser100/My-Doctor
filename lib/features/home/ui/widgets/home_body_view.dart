@@ -45,15 +45,8 @@ class HomeBodyView extends StatelessWidget {
                       label: 'Pain Relief',
                       query: 'pain relief',
                     ),
-                    CategoryChipWidget(
-                      label: 'Antibiotics',
-                      query: 'antibiotic',
-                    ),
+                    CategoryChipWidget(label: 'Ibuprofen', query: 'ibuprofen'),
                     CategoryChipWidget(label: 'Diabetes', query: 'diabetes'),
-                    CategoryChipWidget(
-                      label: 'Hypertension',
-                      query: 'hypertension',
-                    ),
                   ],
                 ),
                 SizedBox(height: 24.h),

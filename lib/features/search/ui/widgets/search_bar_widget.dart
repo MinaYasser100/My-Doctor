@@ -4,16 +4,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_doctor/core/utils/colors.dart';
 import 'package:my_doctor/features/search/manager/cubit/home_search_cubit.dart';
 
-class SearchBarWidget extends StatelessWidget {
+class SearchBarWidget extends StatefulWidget {
   final String initialQuery;
 
   const SearchBarWidget({super.key, required this.initialQuery});
 
   @override
+  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+}
+
+class _SearchBarWidgetState extends State<SearchBarWidget> {
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = widget.initialQuery;
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController(
-      text: initialQuery,
-    );
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
@@ -40,7 +56,7 @@ class SearchBarWidget extends StatelessWidget {
           ),
         ),
         style: TextStyle(color: ColorsTheme().whiteColor),
-        onSubmitted: (query) {
+        onChanged: (query) {
           context.read<HomeSearchCubit>().searchFavorites(query);
         },
       ),
