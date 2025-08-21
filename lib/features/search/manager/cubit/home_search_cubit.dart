@@ -14,7 +14,7 @@ class HomeSearchCubit extends Cubit<HomeSearchState> {
     emit(HomeSearchLoading());
     try {
       final results = await _homeSearchRepo.searchFavorites(query);
-      emit(HomeSearchLoaded(results: results));
+      emit(HomeSearchLoaded(results: results, query: query));
     } catch (e) {
       emit(HomeSearchError(message: e.toString()));
     }

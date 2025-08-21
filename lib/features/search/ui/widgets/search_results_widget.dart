@@ -35,6 +35,13 @@ class SearchResultsWidget extends StatelessWidget {
                     style: TextStyle(color: ColorsTheme().grayColor),
                   ),
                 );
+              } else if (state.query == '') {
+                return Center(
+                  child: Text(
+                    'Search for medicines',
+                    style: TextStyle(color: ColorsTheme().grayColor),
+                  ),
+                );
               }
               return ListView.separated(
                 shrinkWrap: true,

@@ -13,8 +13,9 @@ final class HomeSearchLoading extends HomeSearchState {}
 
 final class HomeSearchLoaded extends HomeSearchState {
   final List<DrugModel> results;
+  final String query;
 
-  const HomeSearchLoaded({required this.results});
+  const HomeSearchLoaded({required this.results, required this.query});
 
   @override
   List<Object> get props => [results];
