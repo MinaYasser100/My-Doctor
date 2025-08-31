@@ -8,6 +8,7 @@ class CustomBodyBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [ColorsTheme().primaryColor, ColorsTheme().backgroundColor],

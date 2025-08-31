@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_doctor/core/routing/routes.dart';
 import 'package:my_doctor/core/theme/app_style.dart';
 import 'package:my_doctor/core/utils/colors.dart';
+import 'package:my_doctor/features/drug_details/data/model/medicine_details_model/drug_details_model.dart';
 import 'package:my_doctor/features/home/data/model/drug_model.dart';
 
 class MedicineCardWidget extends StatelessWidget {
@@ -47,7 +50,7 @@ class MedicineCardWidget extends StatelessWidget {
         ),
         trailing: Icon(Icons.chevron_right, color: ColorsTheme().grayColor),
         onTap: () {
-          // Navigate to details or handle tap
+          context.push(Routes.drugDetails, extra: drugDetails);
         },
       ),
     );

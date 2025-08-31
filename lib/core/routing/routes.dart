@@ -14,4 +14,6 @@ class Routes {
   static const String home = '/';
 
   static const String homeSearch = '/home_search';
+
+  static const String drugDetails = '/drug_details';
 }
